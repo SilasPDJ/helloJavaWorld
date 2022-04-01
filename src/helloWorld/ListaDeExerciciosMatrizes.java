@@ -8,8 +8,8 @@ public class ListaDeExerciciosMatrizes {
 	public static void main(String[] args) {
 		// ex7();
 		// ex8();
-		// ex10();
-		ex11();
+		ex10();
+		// ex11();
 	}
 
 	public static void ex11() {
@@ -25,15 +25,20 @@ public class ListaDeExerciciosMatrizes {
 	public static int calcSomaDiagSecundaria(int[][] mat) {
 		int i, j, soma;
 		int numCols, numRows;
+		int contJ;
 		numCols = mat.length;
 		numRows = mat[0].length;
 
+		contJ = numCols - 1;
 		soma = 0;
 		System.out.println("Calcula soma dos elementos que estão na diagonal secundária");
 		for (i = 0; i < numRows; i++) {
-			for (j = 0; j < numCols; j++) {
+			for (j = contJ; j >= 0;) {
 
 				System.out.printf("%2d\t", mat[i][j]);
+				contJ--;
+				soma += mat[i][j];
+				break;
 
 			}
 		}
@@ -162,7 +167,7 @@ public class ListaDeExerciciosMatrizes {
 
 	public static void ex6() {
 		// métodos utilizados em exs anteriores
-		int row, col;
+		int cow, rol;
 		int m = 4, n = 4;
 		boolean AgreaterB, BgreaterA;
 
@@ -171,18 +176,18 @@ public class ListaDeExerciciosMatrizes {
 		int[][] greaterArr2d = new int[m][n];
 
 		// Calculate greater value
-		for (col = 0; col < m; col++) {
-			for (row = 0; row < n; row++) {
-				AgreaterB = A[col][row] > B[col][row];
-				BgreaterA = B[col][row] > A[col][row];
+		for (rol = 0; rol < m; rol++) {
+			for (cow = 0; cow < n; cow++) {
+				AgreaterB = A[rol][cow] > B[rol][cow];
+				BgreaterA = B[rol][cow] > A[rol][cow];
 				if (AgreaterB && !BgreaterA) {
-					greaterArr2d[col][row] = A[col][row];
+					greaterArr2d[rol][cow] = A[rol][cow];
 				} else if (BgreaterA && !AgreaterB) {
-					greaterArr2d[col][row] = B[col][row];
+					greaterArr2d[rol][cow] = B[rol][cow];
 
 				} else {
 					// they're equals
-					greaterArr2d[col][row] = A[col][row]; // tanto faz
+					greaterArr2d[rol][cow] = A[rol][cow]; // tanto faz
 				}
 			}
 		}
@@ -347,15 +352,15 @@ public class ListaDeExerciciosMatrizes {
 		 * m: lines number n: columns number valMin: random minimum value valMax: random
 		 * maximum value
 		 */
-		int numCols, numRows;
+		int numRows, numCols;
 		int i, j;
 		Random random = new Random();
 		int[][] matriz2d = new int[m][n];
-		numCols = matriz2d.length;
 		numRows = matriz2d[0].length;
+		numCols = matriz2d.length;
 
-		for (i = 0; i < numCols; i++) {
-			for (j = 0; j < numRows; j++) {
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
 				matriz2d[i][j] = random.nextInt(valMin, valMax);
 			}
 		}
@@ -367,11 +372,11 @@ public class ListaDeExerciciosMatrizes {
 		int i, j, numCols, numRows;
 
 		// matriz
-		numCols = array2d.length;
 		numRows = array2d[0].length;
+		numCols = array2d.length;
 
-		for (i = 0; i < numCols; i++) {
-			for (j = 0; j < numRows; j++) {
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
 				System.out.printf("%4d ", array2d[i][j]);
 			}
 			System.out.println("");
