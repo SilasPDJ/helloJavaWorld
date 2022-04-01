@@ -8,10 +8,46 @@ public class ListaDeExerciciosMatrizes {
 	public static void main(String[] args) {
 		// ex7();
 		// ex8();
-		ex10();
+		// ex10();
+		ex11();
 	}
 
+	public static void ex11() {
+		int[][] matriz2d = gerarMatriz2d(3, 3, -10, 21);
+		int soma;
+		System.out.println("--- Matriz completa ---");
+		printMatriz2d(matriz2d);
+		System.out.println("------------------------------------------------------------------");
+		soma = calcSomaDiagSecundaria(matriz2d);
+		System.out.printf("\n\nA soma é %d", soma);
+	}
+
+	public static int calcSomaDiagSecundaria(int[][] mat) {
+		int i, j, soma;
+		int numCols, numRows;
+		numCols = mat.length;
+		numRows = mat[0].length;
+
+		soma = 0;
+		System.out.println("Calcula soma dos elementos que estão na diagonal secundária");
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
+
+				System.out.printf("%2d\t", mat[i][j]);
+
+			}
+		}
+		return soma;
+	}// ...
+
 	public static void ex10() {
+		int[][] matriz2d = gerarMatriz2d(3, 3, -10, 21);
+		int soma;
+		System.out.println("--- Matriz completa ---");
+		printMatriz2d(matriz2d);
+		System.out.println("------------------------------------------------------------------");
+		soma = calcSomaDiagPrincipal(matriz2d);
+		System.out.printf("\n\nA soma é %d", soma);
 	}
 
 	public static int calcSomaDiagPrincipal(int[][] mat) {
@@ -21,9 +57,9 @@ public class ListaDeExerciciosMatrizes {
 		numRows = mat[0].length;
 
 		soma = 0;
-		System.out.println("Calcula soma dos elementos que estão abaixo da diagonal principal");
-		for (i = 0; i < numCols; i++) {
-			for (j = 0; j < numRows; j++) {
+		System.out.println("Calcula soma dos elementos que estão na diagonal principal");
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
 
 				if (i == j) {
 					System.out.printf("%2d\t", mat[i][j]);
@@ -53,8 +89,8 @@ public class ListaDeExerciciosMatrizes {
 
 		soma = 0;
 		System.out.println("Calcula soma dos elementos que estão abaixo da diagonal principal");
-		for (i = 0; i < numCols; i++) {
-			for (j = 0; j < numRows; j++) {
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
 
 				if (j < i) {
 					System.out.printf("%2d\t", mat[i][j]);
@@ -85,8 +121,8 @@ public class ListaDeExerciciosMatrizes {
 
 		soma = 0;
 		System.out.println("Calcula soma dos elementos que estão acima da diagonal principal");
-		for (i = 0; i < numCols; i++) {
-			for (j = 0; j < numRows; j++) {
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
 
 				if (j > i) {
 					System.out.printf("%2d\t", mat[i][j]);
