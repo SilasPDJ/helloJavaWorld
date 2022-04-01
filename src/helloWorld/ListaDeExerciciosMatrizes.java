@@ -6,11 +6,93 @@ import java.util.Scanner;
 public class ListaDeExerciciosMatrizes {
 
 	public static void main(String[] args) {
-		// ex7();
+		// ex10();
 		// ex8();
-		ex10();
 		// ex11();
+		// ex13();
+		// ex14();
+		ex15();
+
 	}
+
+	public static void ex15() {
+		int[][] prova = new int[5][10];
+		printMatriz2d(prova);
+
+	}
+
+	public static void ex14() {
+		int[][] bingo = criaCartelaBingo(5, 5, 0, 99 + 1);
+		System.out.println("---- Gerador de cartela de bingo sem repetições ----");
+		printMatriz2d(bingo);
+
+	}
+
+	protected static int[][] criaCartelaBingo(int m, int n, int valMin, int valMax) {
+		/*
+		 * m: lines number n: columns number valMin: random minimum value valMax: random
+		 * maximum value
+		 */
+		int numRows, numCols;
+		int i, j;
+		int val, contArr;
+		int[] valoresContidos = new int[m * n];
+		Random random = new Random();
+		int[][] matriz2d = new int[m][n];
+		numRows = matriz2d.length;
+		numCols = matriz2d[0].length;
+
+		contArr = 0;
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
+				val = random.nextInt(valMin, valMax);
+
+				for (int vInArr : valoresContidos) {
+					while (val == vInArr) {
+						val = random.nextInt(valMin, valMax);
+					}
+				}
+				matriz2d[i][j] = val;
+				valoresContidos[contArr] = val;
+
+				contArr++;
+			}
+		}
+
+		return matriz2d;
+	}// ...
+
+	public static void ex13() {
+		int[][] matriz2d = gerarMatriz2d(4, 4, 1, 20 + 1);
+		int r, c;
+		int numRows, numCols;
+
+		numRows = matriz2d.length;
+		numCols = matriz2d[0].length;
+
+		System.out.println("------ Matriz principal ------");
+		printMatriz2d(matriz2d);
+		System.out.println("------ Matriz triangular inferior ------");
+
+		for (r = 0; r < numRows; r++) {
+			for (c = 0; c < numCols; c++) {
+				if (c > r) {
+					matriz2d[r][c] = 0;
+				}
+			}
+		}
+		printMatriz2d(matriz2d);
+
+	}// ...
+
+	public static void ex12() {
+		int[][] matriz2d = gerarMatriz2d(3, 3, -10, 21);
+		System.out.println(" Uma matriz é conhecida como simétrica quando ela é igual à sua matriz transposta");
+		System.out.println("matriz[m][n], se m == n, então é matriz simétrica");
+		printMatriz2d(matriz2d);
+		System.out.println("3x3 é simétrico!");
+
+	}// ...
 
 	public static void ex11() {
 		int[][] matriz2d = gerarMatriz2d(3, 3, -10, 21);
@@ -26,8 +108,8 @@ public class ListaDeExerciciosMatrizes {
 		int i, j, soma;
 		int numCols, numRows;
 		int contJ;
-		numCols = mat.length;
-		numRows = mat[0].length;
+		numRows = mat.length;
+		numCols = mat[0].length;
 
 		contJ = numCols - 1;
 		soma = 0;
@@ -57,9 +139,9 @@ public class ListaDeExerciciosMatrizes {
 
 	public static int calcSomaDiagPrincipal(int[][] mat) {
 		int i, j, soma;
-		int numCols, numRows;
-		numCols = mat.length;
-		numRows = mat[0].length;
+		int numRows, numCols;
+		numRows = mat.length;
+		numCols = mat[0].length;
 
 		soma = 0;
 		System.out.println("Calcula soma dos elementos que estão na diagonal principal");
@@ -88,9 +170,9 @@ public class ListaDeExerciciosMatrizes {
 
 	public static int calcSomaAbaixoDiagPrincipal(int[][] mat) {
 		int i, j, soma;
-		int numCols, numRows;
-		numCols = mat.length;
-		numRows = mat[0].length;
+		int numRows, numCols;
+		numRows = mat.length;
+		numCols = mat[0].length;
 
 		soma = 0;
 		System.out.println("Calcula soma dos elementos que estão abaixo da diagonal principal");
@@ -120,9 +202,9 @@ public class ListaDeExerciciosMatrizes {
 
 	public static int calcSomaAcimaDiagPrincipal(int[][] mat) {
 		int i, j, soma;
-		int numCols, numRows;
-		numCols = mat.length;
-		numRows = mat[0].length;
+		int numRows, numCols;
+		numRows = mat.length;
+		numCols = mat[0].length;
 
 		soma = 0;
 		System.out.println("Calcula soma dos elementos que estão acima da diagonal principal");
@@ -140,7 +222,6 @@ public class ListaDeExerciciosMatrizes {
 	}// ...
 
 	public static void ex7() {
-		int numCols, numRows;
 		int m, n;
 		m = 10;
 		n = 10;
@@ -148,8 +229,6 @@ public class ListaDeExerciciosMatrizes {
 		int i, j;
 		Random random = new Random();
 		int[][] aA = new int[m][n];
-		numCols = aA.length;
-		numRows = aA[0].length;
 
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
@@ -315,8 +394,8 @@ public class ListaDeExerciciosMatrizes {
 		final int DEZ = 10;
 
 		int[][] matriz2d = gerarMatriz2d(4, 4, 0, 20);
-		numCols = matriz2d.length;
-		numRows = matriz2d[0].length;
+		numRows = matriz2d.length;
+		numCols = matriz2d[0].length;
 
 		System.out.println("Mostra matriz: ");
 		printMatriz2d(matriz2d);
@@ -356,8 +435,8 @@ public class ListaDeExerciciosMatrizes {
 		int i, j;
 		Random random = new Random();
 		int[][] matriz2d = new int[m][n];
-		numRows = matriz2d[0].length;
-		numCols = matriz2d.length;
+		numRows = matriz2d.length;
+		numCols = matriz2d[0].length;
 
 		for (i = 0; i < numRows; i++) {
 			for (j = 0; j < numCols; j++) {
@@ -372,8 +451,8 @@ public class ListaDeExerciciosMatrizes {
 		int i, j, numCols, numRows;
 
 		// matriz
-		numRows = array2d[0].length;
-		numCols = array2d.length;
+		numRows = array2d.length;
+		numCols = array2d[0].length;
 
 		for (i = 0; i < numRows; i++) {
 			for (j = 0; j < numCols; j++) {
