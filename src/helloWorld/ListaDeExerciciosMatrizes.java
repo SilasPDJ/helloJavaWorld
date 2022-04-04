@@ -11,9 +11,100 @@ public class ListaDeExerciciosMatrizes {
 		// ex11();
 		// ex13();
 		// ex14();
-		ex15();
+		// ex15();
+		ex16();
 
 	}
+
+	public static void ex16() {
+		// Os 5 alunos são 5 linhas, suas respostas são as colunas
+		String answer4now, cod;
+		char answr4n;
+		int qtdAlunos = 3;
+
+		Scanner scanner = new Scanner(System.in);
+		cod = "abcdABCD1237890987654321";
+
+		int[] alunoMatriculas = new int[qtdAlunos];
+		String[] alunoNomes = new String[qtdAlunos];
+		char[][] prova = new char[qtdAlunos][10];
+//		char[] gabarito = new char[10];
+		char[] gabarito = { 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'C', 'A' };
+		boolean answerIsCorrect;
+		boolean answerIsInAbcd = false;
+
+		// Fazendo a Avaliação (prova)
+		for (int i = 0; i < prova.length; i++) {
+			separatorPrint("~", 50);
+
+			separatorPrint("-", 25);
+			System.out.println("Digite seu nome: ");
+			alunoNomes[i] = scanner.next();
+			System.out.println("Digite sua matrícula: ");
+			alunoMatriculas[i] = scanner.nextInt();
+			separatorPrint("-", 25);
+			System.out.printf("Avaliação do(a) aluno(a): %s\n", alunoNomes[i]);
+			separatorPrint("-", 25);
+			System.out.println("Digite suas respostas para as questões: ");
+			System.out.println("As respostas devem ser A, B, C ou D \n(é aceito MAIÚSCULO ou MINÚSCULO)");
+			for (int j = 0; j < prova[0].length; j++) {
+				answer4now = cod;
+				while (answer4now.length() != 1 || !answerIsInAbcd) {
+					if (answer4now != cod) {
+						System.out.println("Resposta inválida. Tente novamente...");
+						separatorPrint(".", 40);
+					} else {
+						separatorPrint("-", 40);
+					}
+					System.out.printf("Pergunta %02d: ", j + 1);
+					answer4now = scanner.next();
+					answerIsInAbcd = ex15AnswerIsAcceptable(answer4now);
+				}
+				answr4n = answer4now.toUpperCase().charAt(0);
+				prova[i][j] = answr4n;
+			}
+			System.out.println();
+		}
+
+		// EMITE RESULTADO, mostra questões acertadas
+		double[] resultado = new double[prova.length];
+		int somaAcertos;
+		for (int aluno = 0; aluno < prova.length; aluno++) {
+			somaAcertos = 0;
+			System.out.printf("Respostas do(a) aluno(a) %s:\n", alunoNomes[aluno]);
+			for (int questao = 0; questao < prova[0].length; questao++) {
+				System.out.printf("%s ", prova[aluno][questao]);
+				answerIsCorrect = prova[aluno][questao] == gabarito[questao];
+				if (answerIsCorrect) {
+					somaAcertos++;
+				}
+			}
+			System.out.println("");
+			separatorPrint("~", 40);
+			resultado[aluno] = somaAcertos * 100 / prova[aluno].length;
+		}
+		separatorPrint("~", 80);
+
+		for (int i = 0; i < resultado.length; i++) {
+			System.out.printf("Acertos do(a) aluno(a) %s: ", alunoNomes[i]);
+			if (resultado[i] >= 7 * 10) {
+				System.out.println("PARABÉNS!");
+				System.out.printf("Aluno APROVADO, com %.2f%% de aproveitamento", resultado[i]);
+			} else {
+				System.out.printf("REPROVADO!\nCom %.2f%% de aproveitamento", resultado[i]);
+
+			}
+			System.out.println("");
+			separatorPrint("-", 60);
+		}
+		separatorPrint("-", 40);
+		System.out.println("O Gabarito é: ");
+		for (int q = 0; q < gabarito.length; q++) {
+			char alt = gabarito[q];
+			System.out.printf("Alternativa %02d): %s", q + 1, alt);
+			System.out.println("");
+		}
+	}// ...
 
 	public static void ex15() {
 		// Os 5 alunos são 5 linhas, suas respostas são as colunas
@@ -121,7 +212,7 @@ public class ListaDeExerciciosMatrizes {
 			}
 			System.out.println("");
 		}
-	}
+	}// ...
 
 	public static void ex14() {
 		int[][] bingo = criaCartelaBingo(5, 5, 0, 99 + 1);
