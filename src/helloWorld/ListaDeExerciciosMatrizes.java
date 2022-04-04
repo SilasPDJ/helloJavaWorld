@@ -16,9 +16,111 @@ public class ListaDeExerciciosMatrizes {
 	}
 
 	public static void ex15() {
-		int[][] prova = new int[5][10];
-		printMatriz2d(prova);
+		// Os 5 alunos são 5 linhas, suas respostas são as colunas
+		String answer4now, cod;
+		char answr4n;
+		cod = "abcdABCD1237890987654321";
 
+		Scanner scanner = new Scanner(System.in);
+		char[][] prova = new char[5][10];
+//		char[] gabarito = new char[10];
+		char[] gabarito = { 'A', 'C', 'D', 'B', 'C', 'B', 'B', 'D', 'A', 'C' };
+
+		boolean answerIsCorrect;
+		boolean answerIsInAbcd = false;
+
+		// Fazendo a Avaliação (prova)
+		for (int i = 0; i < prova.length; i++) {
+			separatorPrint("~", 50);
+			System.out.printf("Avaliação do aluno %02d: ", i + 1);
+			separatorPrint("-", 25);
+			System.out.println("\nDigite suas respostas para as questões: ");
+			System.out.println("As respostas devem ser A, B, C ou D \n(é aceito MAIÚSCULO ou MINÚSCULO)");
+			for (int j = 0; j < prova[0].length; j++) {
+				answer4now = cod;
+				while (answer4now.length() != 1 || !answerIsInAbcd) {
+					if (answer4now != cod) {
+						System.out.println("Resposta inválida. Tente novamente...");
+						separatorPrint(".", 40);
+					} else {
+						separatorPrint("-", 40);
+					}
+					System.out.printf("Pergunta %02d: ", j + 1);
+					answer4now = scanner.next();
+					answerIsInAbcd = ex15AnswerIsAcceptable(answer4now);
+				}
+				answr4n = answer4now.toUpperCase().charAt(0);
+				prova[i][j] = answr4n;
+			}
+			System.out.println();
+		}
+
+		// EMITE RESULTADO
+		int[] resultado = new int[prova.length];
+		int somaAcertos;
+		for (int aluno = 0; aluno < prova.length; aluno++) {
+			somaAcertos = 0;
+			for (int questao = 0; questao < prova[0].length; questao++) {
+				answerIsCorrect = prova[aluno][questao] == gabarito[questao];
+				if (answerIsCorrect) {
+					somaAcertos++;
+				}
+			}
+
+			resultado[aluno] = somaAcertos;
+		}
+
+		printMatriz2d(prova);
+		separatorPrint("~", 80);
+
+		System.out.println(
+				"O total de acertos dos " + prova.length + " alunos num total de " + prova[0].length + " questoes: ");
+		for (int i = 0; i < resultado.length; i++) {
+			System.out.printf("Acertos Aluno %02d: ", i + 1);
+			System.out.println(resultado[i]);
+		}
+		separatorPrint("-", 40);
+		System.out.println("O Gabarito é: ");
+		for (int q = 0; q < gabarito.length; q++) {
+			char alt = gabarito[q];
+			System.out.printf("Alternativa %02d): %s", q + 1, alt);
+			System.out.println("");
+		}
+
+	}
+
+	protected static void separatorPrint(String sep, int qtd) {
+		String repeated = new String(new char[qtd]).replace("\0", sep);
+		System.out.println(repeated);
+	}
+
+	private static boolean ex15AnswerIsAcceptable(String resp) {
+		char[] respostasAceitaveis = { 'A', 'B', 'C', 'D' };
+		String respCompare;
+		respCompare = resp.toUpperCase().strip();
+
+		for (char ra : respostasAceitaveis) {
+			// https://stackoverflow.com/questions/35666077/why-is-string-equals-not-working-in-my-code
+			if (String.valueOf(ra).equals(respCompare)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static void printMatriz2d(char[][] array2d) {
+		int i, j, numCols, numRows;
+
+		// matriz
+		numRows = array2d.length;
+		numCols = array2d[0].length;
+
+		for (i = 0; i < numRows; i++) {
+			for (j = 0; j < numCols; j++) {
+				System.out.printf("%s\t", array2d[i][j]);
+			}
+			System.out.println("");
+		}
 	}
 
 	public static void ex14() {
