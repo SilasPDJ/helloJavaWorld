@@ -6,15 +6,96 @@ import java.util.Scanner;
 public class ListaDeExerciciosMatrizes {
 
 	public static void main(String[] args) {
-		// ex10();
+		// ex1();
+		// ex2();
+		// ex3();
+		// ex4();
+		// ex5();
+		// ex6();
+		// ex7();
 		// ex8();
+		// ex9();
+		// ex10();
 		// ex11();
 		// ex13();
 		// ex14();
 		// ex15();
-		ex16();
-
+		// ex16();
+		// ex17();
+		ex18();
 	}
+
+	public static void ex18() {
+		int i, j;
+		int m = 3, n = 3;
+		Scanner scanner = new Scanner(System.in);
+		int[][] matriz = new int[m][n];
+
+		int[] arrSoma = new int[n];
+		for (i = 0; i < matriz.length; i++) {
+			for (j = 0; j < matriz[0].length; j++) {
+				System.out.printf("matriz[%d][%d], digite um valor numérico inteiro: ", i, j);
+				matriz[i][j] = scanner.nextInt();
+			}
+		}
+		// Print matriz:
+		separatorPrint("~", 50);
+		for (i = 0; i < matriz.length; i++) {
+			for (j = 0; j < matriz[0].length; j++) {
+				System.out.printf("%4d", matriz[i][j]);
+			}
+			System.out.println("");
+		}
+		// Atribui soma
+		for (i = 0; i < matriz.length; i++) {
+			arrSoma[i] = 0;
+			for (j = 0; j < matriz[0].length; j++) {
+				arrSoma[i] += matriz[j][i];
+			}
+		}
+
+		separatorPrint("~", 50);
+		for (i = 0; i < arrSoma.length; i++) {
+			int val = arrSoma[i];
+			System.out.printf("Soma da coluna %d = ", i + 1);
+			System.out.println(val);
+		}
+	}// ...
+
+	public static void ex17() {
+		int[][] notasAlunos = criaCartelaBingo(10, 3, 1, 11);
+
+		System.out.println("------- Nota dos alunos: -------");
+		separatorPrint("~", 40);
+		System.out.println("   P1   P2   P3");
+		separatorPrint("~", 40);
+		printMatriz2d(notasAlunos);
+		separatorPrint("~", 40);
+
+		menorNota(notasAlunos);
+	}
+
+	private static void menorNota(int[][] matriz) {
+		int al, j;
+		int nota;
+		int[] arrContNotas = new int[matriz[0].length];
+		int indiceCont = -1;
+
+		for (al = 0; al < matriz.length; al++) {
+			nota = 10;
+			for (j = 0; j < matriz[0].length; j++) {
+				if (matriz[al][j] <= nota) {
+					indiceCont = j;
+					nota = matriz[al][j];
+				}
+			}
+			arrContNotas[indiceCont] += 1;
+		}
+		for (int i = 0; i < arrContNotas.length; i++) {
+			System.out.printf("Na 1ª PROVA, %d de %d alunos tiraram a menor nota", arrContNotas[i], matriz.length);
+			System.out.println("");
+		}
+	}// ...
 
 	public static void ex16() {
 		// Os 5 alunos são 5 linhas, suas respostas são as colunas
