@@ -18,11 +18,11 @@ public class ListaDeExerciciosMatrizes {
 		// ex10();
 		// ex11();
 		// ex13();
-		// ex14();
+		ex14();
 		// ex15();
 		// ex16();
 		// ex17();
-		ex18();
+		// ex18();
 	}
 
 	public static void ex18() {

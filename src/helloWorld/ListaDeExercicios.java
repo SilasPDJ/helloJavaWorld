@@ -9,10 +9,22 @@ public class ListaDeExercicios {
 	public static void main(String[] args) {
 		// method printArray() está sendo utilizado em diversos exercícios
 		// ex1();
-		// ex12();
+		// ex2();
+		// ex3();
+		// ex4();
+		// ex5();
+		// ex6();
+		// ex7();
+		// ex8();
+		// ex9();
+		// ex10();
+		ex11();
 		// ex13();
 		// ex14();
 		// ex15();
+		// ex16();
+		// ex17();
+		// ex18();
 
 	}
 
