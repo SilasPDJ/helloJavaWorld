@@ -23,3 +23,23 @@
 		printArray(arr2);
 		// random.nextInt(-10, 10);
 	}
+	
+	
+	
+	
+		cont++;
+		i--;
+		j = metade + 1;
+		for (int c = 0; c < cont; c++) {
+			val++;
+			caracol[i][j] = val;
+			j--;
+
+		}
+		j++;
+		for (int c = 0; c < cont; c++) {
+			val++;
+			caracol[i][j] = val;
+			i++;
+
+		}
