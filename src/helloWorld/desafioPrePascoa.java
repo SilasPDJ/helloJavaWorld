@@ -8,13 +8,15 @@ public class desafioPrePascoa {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// ex1(5);
-		// ex1(7);
-		// ex1(9);
-		// ex1(11);
+
+		int[] ex1Nums = { 5, 7, 9, 11, 13 };
+		for (int i : ex1Nums) {
+			ex1(i);
+		}
+
 		separatorPrint("~", 60);
 		for (int i = 5; i <= 10; i++) {
-			// ex2(i);
+			ex2(i);
 		}
 		separatorPrint("~", 60);
 		ex3();
