@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class desafioPrePascoa {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		// Dinâmicos e responsivos!
 		int[] ex1Nums = { 5, 7, 9, 11, 13 };
 		for (int i : ex1Nums) {
 //			ex1(i);
