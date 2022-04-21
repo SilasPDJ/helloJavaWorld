@@ -11,12 +11,12 @@ public class desafioPrePascoa {
 
 		int[] ex1Nums = { 5, 7, 9, 11, 13 };
 		for (int i : ex1Nums) {
-			ex1(i);
+//			ex1(i);
 		}
 
 		separatorPrint("~", 60);
 		for (int i = 5; i <= 10; i++) {
-			ex2(i);
+//			ex2(i);
 		}
 		separatorPrint("~", 60);
 		ex3();
@@ -76,7 +76,7 @@ public class desafioPrePascoa {
 		System.out.print("O RESULTADO SORTEADO É: ");
 		printArray(senaResult);
 
-		if (contAcertos < 3) {
+		if (contAcertos <= 3) {
 			System.out.printf("NÃO HOUVE GANHOS! Teve %2d acertos", contAcertos);
 		} else {
 			String resultadoNomenclatura = contAcertos == 4 ? "QUADRA"
