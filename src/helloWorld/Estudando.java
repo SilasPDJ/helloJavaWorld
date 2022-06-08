@@ -1,37 +1,72 @@
 package helloWorld;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class Estudando {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] V1 = { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
-
-		int[] V2 = { 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 };
-		int i;
-		int[] V3 = new int[10];
-
-		for (i = 0; i < V1.length; i++) {
-			if (V1[i] > V2[i]) {
-				V3[i] = 2 * V1[i] + V2[i];
-			} else if (V1[i] < V2[i]) {
-				V3[i] = 2 * V2[i] + V1[i];
-			} else {
-				V3[i] = 2 * (V1[i] + V2[i]);
-			}
-		}
-
-		printArray(V3);
-		// aux = A
-		// S
+		int a = mult(5, 2348);
+		System.out.println(a);
+		getRandomArray(100, -100, 100, true);
 
 	}
 
-	private static void printArray(int[] array) {
-		int i;
-		for (i = 0; i < array.length; i++) {
-			System.out.printf("%1d ", array[i]);
+	public static int mult(int m, int n) {
+		if (n >= 1) {
+			return mult(m, n - 1) + m;
+		} else {
+			return 0;
 		}
-		System.out.println("\n");
+		// pra isso progrmaação recursiva:
+		// metodos de ornação, busca, busca binária, registro de vetores
+		// funcional == recursividade == programação matemático estatístico
+		// for demora demais em quando em alto volume
+
+		// emular repetição usando a recursividade
+	}
+
+	private static int printArray(int[] array, int arg) {
+		int inf, sup, med;
+		inf = 0;
+		sup = array.length;
+		while (inf <= sup) {
+			med = (inf + sup) / 2; // div int
+			if (arg == array[med])
+				return med;
+			else if (arg > array[med])
+				inf = med + 1; // procura na 2a metade
+			else if (arg < array[med])
+				sup = med - 1; // procura na 1a metade
+		}
+	}
+
+	private static void buscaBinaria(int[] arr, int val) {
+//		BinaryOperator<T>
+	}
+
+	private static int[] getRandomArray(int tam, int min, int max, boolean ordered) {
+		int i, r;
+		int val;
+		int[] arr = new int[tam];
+		Random random = new Random();
+		for (i = 0; i < arr.length; i++) {
+
+			val = random.nextInt(min, max);
+			while (arrayContains(arr, val)) {
+				val = random.nextInt(min, max);
+			}
+			arr[i] = val;
+
+		}
+		if (ordered) {
+			Arrays.sort(arr);
+		}
+		return arr;
+	}
+
+	private static boolean arrayContains(final int[] arr, final int key) {
+		return Arrays.stream(arr).anyMatch(i -> i == key);
 	}
 
 }
